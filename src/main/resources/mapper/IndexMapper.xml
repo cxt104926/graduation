@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.IndexDao">	
+	
+	<!-- 查询一级栏目 -->
+	<select id="findAllColumn" resultType="com.model.Column" >
+	  SELECT id,c_name cName,c_id cId
+	  FROM `column`
+	  where c_id is null
+	</select>
+	 
+	 <!-- 查询10条最新文章  查询出的有文章标题，文章简介，文章点赞数，文章的评论数量-->
+	 <select id="find" >
+	   SELECT
+			e.id,
+			e.userid,
+			e.title,
+			e.introduce,
+			e.essay_count,
+			e.time,
+			COUNT(c.essayid) co
+		FROM
+			essay e,
+			`comment` c
+		WHERE
+			e.id = c.essayid
+		GROUP BY
+			c.essayid
+		ORDER BY
+			e.time
+		LIMIT 3	 
+	 </select>
+	 
+	 
+</mapper>

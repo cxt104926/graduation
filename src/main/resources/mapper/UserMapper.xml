@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserDao">	
+	<!-- 注册 -->
+	<insert id="save" parameterType="com.model.Users">
+		insert into users(username,password,gender,authority,phone,emily) 
+		values(#{username},#{password},#{gender},#{authority},#{phone},#{emily})
+	</insert>
+	
+	<!-- 登录 -->
+	<select id="findByName" resultType="com.model.Users" parameterType="String">
+	  SELECT
+			id,username,password,gender,authority,phone,emily,credit,img
+		FROM
+			users
+		WHERE
+			username = #{account}
+	</select> 
+	<select id="findByPhone" resultType="com.model.Users" parameterType="String">
+	  SELECT
+			id,username,password,gender,authority,phone,emily,credit,img
+		FROM
+			users
+		WHERE
+			phone = #{phone}
+	</select> 
+</mapper>
