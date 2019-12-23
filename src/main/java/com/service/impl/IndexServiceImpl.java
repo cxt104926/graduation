@@ -23,5 +23,11 @@ public class IndexServiceImpl implements IndexService
     {
         return dao.findAllColumn();
     }
+
+    @Override
+    public List<Column> findNewEssays()
+    {
+        return dao.findNewEssays();
+    }
     
 }

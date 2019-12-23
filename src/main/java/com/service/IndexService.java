@@ -9,5 +9,8 @@ import com.model.Column;
 
 public interface IndexService
 {
-    public List<Column> findColumn();
+     List<Column> findColumn();
+     
+     List<Column> findNewEssays();
+    
 }

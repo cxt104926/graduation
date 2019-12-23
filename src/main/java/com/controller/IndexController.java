@@ -38,8 +38,7 @@ public class IndexController
     @ApiOperation(value = "查询最新10篇文章",notes = "查询出的有文章标题，文章简介，文章点赞数，文章的评论数量")
     public Message findNewEssay() {
         
-        
-        
-        return null;
+        List<Column> list = service.findNewEssays();
+        return MessageUtil.success(list);
     }
 }

@@ -1,12 +1,12 @@
 package com.model;
 
+import java.sql.Date;
 import java.util.List;
 
 /**   
 * @version 2019年12月20日 下午3:33:14 
 */
 
-import javax.xml.crypto.Data;
 
 public class Essay
 {
@@ -25,7 +25,7 @@ public class Essay
     /**
      * 发表时间
      */ 
-    private Data time;
+    private Date time;
     
     // 简介
     private String introduce;
@@ -94,12 +94,12 @@ public class Essay
         this.user = user;
     }
     
-    public Data getTime()
+    public Date getTime()
     {
         return time;
     }
     
-    public void setTime(Data time)
+    public void setTime(Date time)
     {
         this.time = time;
     }

@@ -14,5 +14,5 @@ public interface IndexDao
 {
     List<Column> findAllColumn();
     
-    
+    List<Column> findNewEssays();
 }

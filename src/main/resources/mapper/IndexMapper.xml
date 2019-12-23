@@ -1,52 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.IndexDao">	
-	
+<mapper namespace="com.mapper.IndexDao">
+
 	<!-- 查询一级栏目 -->
-	<select id="findAllColumn" resultType="com.model.Column" >
-	  SELECT id,c_name cName,c_id cId
-	  FROM `column`
-	  where c_id is null
+	<select id="findAllColumn" resultType="com.model.Column">
+		SELECT id,c_name cName,c_id cId
+		FROM `column`
+		where c_id is null
 	</select>
-	 
-	 <!-- 查询10条最新文章  查询出的有文章标题，文章简介，文章点赞数，文章的评论数量-->
-	 <select id="findNewEssays"  resultMap="findNewEssaysResult">
-	   SELECT
-			e.id eid,
-			e.title etitle,
-			e.introduce eintroduce, 
-			e.essay_count ecount,
-			e.time etime,
-			u.id uid,
-			u.username uname,
-			u.img uimg,
-			c.content,
-			c.parse_count,
-			c.comment_time			
+
+	<!--查询10条最新文章 查询出的有文章标题，文章简介，文章点赞数，文章的评论数量 -->
+	<select id="findNewEssays" resultMap="findNewEssaysResult">
+		SELECT
+		e.id eid,
+		e.title etitle,
+		e.time etime,
+		e.introduce eintroduce,
+		e.essay_count ecount,
+		u.id uid,
+		u.username uname,
+		u.img uimg,
+		c.id cid,
+		c.content ccontent,
+		c.parse_count cparsecount
 		FROM
-			essay e,
-			`comment` c,
-			users u
+		essay e,
+		`comment` c,
+		users u
 		WHERE
-			e.id = c.essayid
-			AND e.userid = u.id
-		ORDER BY
-			e.time
-		LIMIT 5
-	 </select>
-	 <resultMap type="com.model.Essay" id="findNewEssaysResult">
-	 	<id column="eid" property="id"/>	 	
-	 	<result column="etitle" property="title"/>
-	 	<result column="eintroduce" property="introduce"/>
-	 	<result column="ecount" property="count"/>
-	 	<result column="etime" property="time"/>
-	 	<association property="user" javaType="com.model.Users">
-	 		<id column="uid" property="id"/>
-	 		<result column="unmae" property="username"/>
-	 		<result column="uimg" property="img"/>
-	 	</association>
-	 	<association property=""></association>
-	 </resultMap>
-	 
-	 
+		e.id = c.essayid
+		AND e.userid = u.id
+		ORDER BY e.id
+	</select>
+	<resultMap type="com.model.Essay" id="findNewEssaysResult">
+		<id column="eid" property="id" />
+		<result column="etitle" property="title" />
+		<result column="eintroduce" property="introduce" />
+		<result column="etime" property="time" />
+		<result column="ecount" property="essayCount" />
+		<association property="user" javaType="com.model.Users">
+			<id column="uid" property="id" />
+			<result column="unmae" property="username" />
+			<result column="uimg" property="img" />
+		</association>
+		
+		<collection property="comment" javaType="com.model.Comment">
+			<id column="cid" property="id" />
+			<result column="ccontent" property="content" />
+			<result column="cparsecount" property="parseCount" />
+		</collection>
+	</resultMap>
+
+	<!-- 查询10条最新文章 查询出的有文章标题，文章简介，文章点赞数，文章的评论数量 <select id="findNewEssays" 
+		resultMap="findNewEssaysResult"> SELECT e.id eid, e.title etitle, e.time 
+		etime, e.introduce eintroduce, e.essay_count ecount, u.id uid, u.username 
+		uname, u.img uimg FROM essay e, users u WHERE e.userid = u.id ORDER BY e.id 
+		</select> <resultMap type="com.model.Essay" id="findNewEssaysResult"> <id 
+		column="eid" property="id"/> <result column="etitle" property="title"/> <result 
+		column="eintroduce" property="introduce"/> <result column="etime" property="time"/> 
+		<result column="ecount" property="essayCount"/> <association property="user" 
+		javaType="com.model.Users"> <id column="uid" property="id"/> <result column="unmae" 
+		property="username"/> <result column="uimg" property="img"/> </association> 
+		</resultMap> -->
+
 </mapper>
