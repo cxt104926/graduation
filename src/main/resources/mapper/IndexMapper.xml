@@ -10,26 +10,43 @@
 	</select>
 	 
 	 <!-- 查询10条最新文章  查询出的有文章标题，文章简介，文章点赞数，文章的评论数量-->
-	 <select id="find" >
+	 <select id="findNewEssays"  resultMap="findNewEssaysResult">
 	   SELECT
-			e.id,
-			e.userid,
-			e.title,
-			e.introduce,
-			e.essay_count,
-			e.time,
-			COUNT(c.essayid) co
+			e.id eid,
+			e.title etitle,
+			e.introduce eintroduce, 
+			e.essay_count ecount,
+			e.time etime,
+			u.id uid,
+			u.username uname,
+			u.img uimg,
+			c.content,
+			c.parse_count,
+			c.comment_time			
 		FROM
 			essay e,
-			`comment` c
+			`comment` c,
+			users u
 		WHERE
 			e.id = c.essayid
-		GROUP BY
-			c.essayid
+			AND e.userid = u.id
 		ORDER BY
 			e.time
-		LIMIT 3	 
+		LIMIT 5
 	 </select>
+	 <resultMap type="com.model.Essay" id="findNewEssaysResult">
+	 	<id column="eid" property="id"/>	 	
+	 	<result column="etitle" property="title"/>
+	 	<result column="eintroduce" property="introduce"/>
+	 	<result column="ecount" property="count"/>
+	 	<result column="etime" property="time"/>
+	 	<association property="user" javaType="com.model.Users">
+	 		<id column="uid" property="id"/>
+	 		<result column="unmae" property="username"/>
+	 		<result column="uimg" property="img"/>
+	 	</association>
+	 	<association property=""></association>
+	 </resultMap>
 	 
 	 
 </mapper>

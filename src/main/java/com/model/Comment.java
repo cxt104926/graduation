@@ -10,8 +10,6 @@ public class Comment
 {
     private int id;
     
-    private Users user;
-    
     private int essayId;
     
     private int parentId;
@@ -40,15 +38,6 @@ public class Comment
         this.id = id;
     }
     
-    public Users getUser()
-    {
-        return user;
-    }
-    
-    public void setUser(Users user)
-    {
-        this.user = user;
-    }
     
     public int getEssayId()
     {

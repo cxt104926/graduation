@@ -12,40 +12,56 @@ public class Essay
 {
     private int id;
     
-    // 标题
+    /**
+     * 标题
+     */ 
     private String title;
     
-    // 作者
+    /**
+     * 作者
+     */
     private Users user;
     
-    // 发表时间
+    /**
+     * 发表时间
+     */ 
     private Data time;
     
     // 简介
     private String introduce;
     
-    // 内容
+    /**
+     * 内容
+     */ 
     private StringBuffer content;
     
-    // 点赞数量
+    /**
+     * 点赞数量
+     */ 
     private int essayCount;
     
-    // 文章类型【原创、转发】
+    /**
+     * 文章类型【原创、转发】
+     */ 
     private String type;
     
-    // 文章分类
+    /**
+     * 文章分类
+     */ 
     private Column column;
     
-    // 文章找中的图片
+    /**
+     * 文章找中的图片
+     */ 
     private List<EssayImg> img;
     
-    // 文章的评论
+    /**
+     * 文章的评论
+     */ 
     private List<Comment> comment;
-    
+   
     public Essay()
     {
-        super();
-        // TODO Auto-generated constructor stub
     }
     
     public int getId()
